@@ -1,4 +1,4 @@
-# 🖥️ CPU Zamanlama Algoritmaları Simülasyonu (CPU Scheduling Simulation)
+## CPU Zamanlama Algoritmaları Simülasyonu (CPU Scheduling Simulation)
 
 Bu proje, İşletim Sistemleri dersi kapsamında verilen işlem (process) setleri üzerinde farklı **CPU Zamanlama Algoritmalarını** simüle etmek, bu algoritmaların performanslarını analiz etmek ve detaylı raporlar oluşturmak amacıyla **Java** dili ile geliştirilmiştir.
 
@@ -6,7 +6,7 @@ Proje, işletim sistemlerinin çekirdek görevlerinden biri olan işlemci zamanl
 
 ---
 
-## 👤 Öğrenci ve Ders Bilgileri
+##  Öğrenci ve Ders Bilgileri
 
 | Alan | Bilgi |
 | :--- | :--- |
@@ -19,14 +19,14 @@ Proje, işletim sistemlerinin çekirdek görevlerinden biri olan işlemci zamanl
 
 ---
 
-## 🚀 Projenin Amacı ve Özellikleri
+##  Projenin Amacı ve Özellikleri
 
 Bu simülasyon, verilen `.txt` formatındaki veri setlerini okur ve aşağıdaki kısıtlamalara göre işler:
 * **Bağlam Değiştirme (Context Switch) Maliyeti:** Her işlem değişiminde `0.001` ms (veya birim zaman) maliyet hesaba katılır.
 * **Round Robin Quantum Süresi:** `10` birim zaman olarak belirlenmiştir.
 * **Öncelik Seviyeleri:** `High` (1), `Normal` (2), `Low` (3) olarak sayısal değerlere dönüştürülüp işlenir.
 
-### 🛠️ Simüle Edilen Algoritmalar
+###  Simüle Edilen Algoritmalar
 Proje, aynı veri seti üzerinde aşağıdaki 6 farklı algoritmayı sırasıyla çalıştırır:
 
 1.  **FCFS (First Come First Served):** İlk gelen işlem ilk yapılır.
@@ -55,7 +55,7 @@ CPU-Scheduling-Project/
     └── ...
 ```
 
-## ⚙️ Kurulum ve Çalıştırma
+##  Kurulum ve Çalıştırma
 Bu projeyi yerel makinenizde çalıştırmak için bilgisayarınızda Java Development Kit (JDK) kurulu olmalıdır.
 
 1. Projeyi İndirin
@@ -83,7 +83,7 @@ java Odev1
 ```
 Not: Program çalıştırıldığında odev1_case1.txt ve odev1_case2.txt dosyalarını otomatik olarak arar. Bu dosyaların .java dosyası ile aynı dizinde olduğundan emin olun.
 
-## 📊 Çıktı ve Raporlama
+##  Çıktı ve Raporlama
 Program çalıştığında sonuclar adında bir klasör oluşturur ve her algoritma için ayrı bir .txt rapor dosyası üretir. Bu raporlar şunları içerir:
 
 a) Zaman Tablosu (Gantt Chart): İşlemlerin hangi zaman aralıklarında çalıştığını gösteren görselleştirilmiş akış.
