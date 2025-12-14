@@ -60,7 +60,7 @@ Bu projeyi yerel makinenizde çalıştırmak için bilgisayarınızda Java Devel
 
 1. Projeyi İndirin
 
-Bu repoyu klonlayın veya zip olarak indirip masaüstünde bir klasöre çıkarın.
+Bu repoyu klonlayın veya zip olarak indirip masaüstünde bir klasöre çıkarın. İsterseniz dosyaları kullandığınız IDE'den proje içine atıp'ta direkt çalıştırabilirsiniz.
 
 2. Terminali Açın
 
