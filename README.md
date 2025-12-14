@@ -66,20 +66,21 @@ Bu repoyu klonlayın veya zip olarak indirip masaüstünde bir klasöre çıkar�
 
 Komut satırını (CMD veya Terminal) açın ve proje klasörünün içine girin:
 
+```text 
 cd Desktop/ProjeKlasoru
-
+```
 3. Derleme (Compile)
 
 Java kodunu derlemek için şu komutu çalıştırın:
-
+```text 
 javac Odev1.java
-
+```
 4. Çalıştırma (Run)
 
 Derlenen kodu çalıştırmak için:
-
+```text
 java Odev1
-
+```
 Not: Program çalıştırıldığında odev1_case1.txt ve odev1_case2.txt dosyalarını otomatik olarak arar. Bu dosyaların .java dosyası ile aynı dizinde olduğundan emin olun.
 
 ## 📊 Çıktı ve Raporlama
@@ -97,5 +98,5 @@ e) CPU Verimliliği: İşlemci kullanım oranı (Bağlam değiştirme maliyetler
 
 f) Bağlam Değiştirme Sayısı: Toplam context switch adedi.
 
-```text
+```text 
 
