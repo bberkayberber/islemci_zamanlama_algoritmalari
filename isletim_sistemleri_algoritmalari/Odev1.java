@@ -1,12 +1,10 @@
 // BERKAY BERBER 20232013087 
 
-
 import java.io.*;
 import java.util.*;
 
 public class Odev1 {
 
- 
     static final double CONTEXT_SWITCH_SURESI = 0.001;
     static final int TIME_QUANTUM = 10; 
 
@@ -16,7 +14,6 @@ public class Odev1 {
         int burstZamani;
         int kalanSure;
         int oncelik; // 1: High, 2: Normal, 3: Low
-
 
         int baslangic = -1;
         int bitis = 0;
@@ -81,7 +78,6 @@ public class Odev1 {
         return kopya;
     }
 
- 
     public static void raporYaz(String dosyaAdi, String algoritma, ArrayList<Islem> bitenler, String gantt, int degisimSayisi) {
         
         File klasor = new File("sonuclar");
@@ -148,6 +144,8 @@ public class Odev1 {
         }
     }
 
+    // --- ALGORITMALAR (GÜNCELLENDİ: Alt alta yazdırma eklendi) ---
+
     public static void fcfsCalistir(ArrayList<Islem> liste, String dosyaAdi) {
         ArrayList<Islem> islemListesi = kopyaOlustur(liste);
         Collections.sort(islemListesi, new Comparator<Islem>() {
@@ -165,11 +163,12 @@ public class Odev1 {
             if (zaman < i.gelisZamani) {
                 gantt += "[" + zaman + "]--IDLE--";
                 zaman = i.gelisZamani;
+                gantt += "[" + zaman + "]\n"; // Alt satıra geç
             }
             i.baslangic = zaman;
             gantt += "[" + zaman + "]--" + i.id + "--";
             zaman += i.burstZamani;
-            gantt += "[" + zaman + "]";
+            gantt += "[" + zaman + "]\n"; // Alt satıra geç
             
             i.bitis = zaman;
             i.donus = i.bitis - i.gelisZamani;
@@ -198,7 +197,10 @@ public class Odev1 {
             }
 
             if (hazirKuyruk.isEmpty()) {
-                gantt += "[" + zaman + "]--IDLE--"; zaman++; gantt += "[" + zaman + "]"; continue;
+                gantt += "[" + zaman + "]--IDLE--"; 
+                zaman++; 
+                gantt += "[" + zaman + "]\n"; // Alt satıra geç
+                continue;
             }
 
             Collections.sort(hazirKuyruk, new Comparator<Islem>() {
@@ -210,7 +212,7 @@ public class Odev1 {
 
             gantt += "[" + zaman + "]--" + secilen.id + "--";
             zaman += secilen.burstZamani;
-            gantt += "[" + zaman + "]";
+            gantt += "[" + zaman + "]\n"; // Alt satıra geç
 
             secilen.bitis = zaman;
             secilen.donus = secilen.bitis - secilen.gelisZamani;
@@ -236,8 +238,14 @@ public class Odev1 {
             }
 
             if (adaylar.isEmpty()) {
-                if (aktif != null) aktif = null;
-                gantt += "[" + zaman + "]--IDLE--"; zaman++; gantt += "[" + zaman + "]"; continue;
+                if (aktif != null) {
+                    gantt += "[" + zaman + "]\n"; // Önceki işlemi kapat ve aşağı in
+                    aktif = null;
+                }
+                gantt += "[" + zaman + "]--IDLE--"; 
+                zaman++; 
+                gantt += "[" + zaman + "]\n"; // IDLE bitti, aşağı in
+                continue;
             }
 
             Collections.sort(adaylar, new Comparator<Islem>() {
@@ -245,16 +253,22 @@ public class Odev1 {
             });
 
             Islem enKisa = adaylar.get(0);
+            
+            // Eğer işlem değişirse (Context Switch)
             if (aktif != enKisa) {
+                if (aktif != null) {
+                    gantt += "[" + zaman + "]\n"; // Öncekini kapat ve aşağı in
+                }
                 degisim++;
                 aktif = enKisa;
                 gantt += "[" + zaman + "]--" + aktif.id + "--";
             }
+            
             aktif.kalanSure--;
             zaman++;
 
             if (aktif.kalanSure == 0) {
-                gantt += "[" + zaman + "]";
+                gantt += "[" + zaman + "]\n"; // İşlem bitti, kapat ve aşağı in
                 aktif.bitis = zaman;
                 aktif.donus = aktif.bitis - aktif.gelisZamani;
                 aktif.bekleme = aktif.donus - aktif.burstZamani;
@@ -278,7 +292,10 @@ public class Odev1 {
                 if (i.gelisZamani <= zaman && !bitenler.contains(i) && !hazirKuyruk.contains(i)) hazirKuyruk.add(i);
             }
             if (hazirKuyruk.isEmpty()) {
-                gantt += "[" + zaman + "]--IDLE--"; zaman++; gantt += "[" + zaman + "]"; continue;
+                gantt += "[" + zaman + "]--IDLE--"; 
+                zaman++; 
+                gantt += "[" + zaman + "]\n"; // Alt satıra geç
+                continue;
             }
             Collections.sort(hazirKuyruk, new Comparator<Islem>() {
                 public int compare(Islem i1, Islem i2) {
@@ -291,7 +308,7 @@ public class Odev1 {
             
             gantt += "[" + zaman + "]--" + secilen.id + "--";
             zaman += secilen.burstZamani;
-            gantt += "[" + zaman + "]";
+            gantt += "[" + zaman + "]\n"; // Alt satıra geç
             
             secilen.bitis = zaman;
             secilen.donus = secilen.bitis - secilen.gelisZamani;
@@ -316,8 +333,14 @@ public class Odev1 {
                 if (i.gelisZamani <= zaman && i.kalanSure > 0) adaylar.add(i);
             }
             if (adaylar.isEmpty()) {
-                if (aktif != null) aktif = null;
-                gantt += "[" + zaman + "]--IDLE--"; zaman++; gantt += "[" + zaman + "]"; continue;
+                if (aktif != null) {
+                    gantt += "[" + zaman + "]\n"; // Öncekini kapat
+                    aktif = null;
+                }
+                gantt += "[" + zaman + "]--IDLE--"; 
+                zaman++; 
+                gantt += "[" + zaman + "]\n"; // Alt satır
+                continue;
             }
             Collections.sort(adaylar, new Comparator<Islem>() {
                 public int compare(Islem i1, Islem i2) {
@@ -326,15 +349,22 @@ public class Odev1 {
                 }
             });
             Islem enOncelikli = adaylar.get(0);
+            
+            // Context Switch Kontrolü
             if (aktif != enOncelikli) {
+                if (aktif != null) {
+                    gantt += "[" + zaman + "]\n"; // Öncekini kapat
+                }
                 degisim++;
                 aktif = enOncelikli;
                 gantt += "[" + zaman + "]--" + aktif.id + "--";
             }
+            
             aktif.kalanSure--;
             zaman++;
+            
             if (aktif.kalanSure == 0) {
-                gantt += "[" + zaman + "]";
+                gantt += "[" + zaman + "]\n"; // Alt satır
                 aktif.bitis = zaman;
                 aktif.donus = aktif.bitis - aktif.gelisZamani;
                 aktif.bekleme = aktif.donus - aktif.burstZamani;
@@ -365,7 +395,9 @@ public class Odev1 {
 
         while (bitenler.size() < havuz.size()) {
             if (kuyruk.isEmpty()) {
-                gantt += "[" + zaman + "]--IDLE--"; zaman++; gantt += "[" + zaman + "]";
+                gantt += "[" + zaman + "]--IDLE--"; 
+                zaman++; 
+                gantt += "[" + zaman + "]\n"; // Alt satır
                 while (eklenenSayisi < havuz.size() && havuz.get(eklenenSayisi).gelisZamani <= zaman) {
                     kuyruk.add(havuz.get(eklenenSayisi)); eklenenSayisi++;
                 }
@@ -378,7 +410,7 @@ public class Odev1 {
             int calisma = Math.min(TIME_QUANTUM, p.kalanSure);
             gantt += "[" + zaman + "]--" + p.id + "--";
             zaman += calisma;
-            gantt += "[" + zaman + "]";
+            gantt += "[" + zaman + "]\n"; // Alt satır
             p.kalanSure -= calisma;
 
             while (eklenenSayisi < havuz.size() && havuz.get(eklenenSayisi).gelisZamani <= zaman) {
