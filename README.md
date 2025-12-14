@@ -42,7 +42,7 @@ Proje, aynı veri seti üzerinde aşağıdaki 6 farklı algoritmayı sırasıyla
 
 Proje dosyaları aşağıdaki hiyerarşide düzenlenmiştir:
 
-
+```text 
 CPU-Scheduling-Project/
 │
 ├── Odev1.java           # Ana kaynak kod (Main Class ve Algoritmalar)
@@ -53,7 +53,7 @@ CPU-Scheduling-Project/
     ├── odev1_case1_FCFS.txt
     ├── odev1_case1_RoundRobin.txt
     └── ...
-
+```
 
 ## ⚙️ Kurulum ve Çalıştırma
 Bu projeyi yerel makinenizde çalıştırmak için bilgisayarınızda Java Development Kit (JDK) kurulu olmalıdır.
@@ -98,5 +98,5 @@ e) CPU Verimliliği: İşlemci kullanım oranı (Bağlam değiştirme maliyetler
 
 f) Bağlam Değiştirme Sayısı: Toplam context switch adedi.
 
-```text 
+
 
