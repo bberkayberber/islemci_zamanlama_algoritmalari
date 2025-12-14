@@ -12,10 +12,10 @@ Proje, işletim sistemlerinin çekirdek görevlerinden biri olan işlemci zamanl
 | :--- | :--- |
 | **Öğrenci Adı** | [Berkay Berber] |
 | **Öğrenci Numarası** | [20232013087] |
-| **Bölüm** | Bilgisayar Mühendisliği |
+| **Bölüm** | [Bilgisayar Mühendisliği] |
 | **Üniversite** | [İstanbul Nişantaşı Üniversitesi] |
 | **Ders Kodu & Adı** | [EBLM341 - İşletim Sistemleri] |
-| **Ödev Konusu** | İşlemci Zamanlama Algoritmaları Simülasyonu |
+| **Ödev Konusu** | [İşlemci Zamanlama Algoritmaları Simülasyonu] |
 
 ---
 
